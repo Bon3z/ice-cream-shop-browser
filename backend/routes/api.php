@@ -18,3 +18,8 @@ $router = app(Router::class);
 
 $router->post('/register', [IceCreamShopController::class, 'register']);
 $router->post('/login', [IceCreamShopController::class, 'login']);
+
+$router->middleware('auth:sanctum')->group(function (Router $router): void {
+    $router->post('/shop', [IceCreamShopController::class, 'create']);
+    $router->put('/shop/{profile}', [IceCreamShopController::class, 'update']);
+});

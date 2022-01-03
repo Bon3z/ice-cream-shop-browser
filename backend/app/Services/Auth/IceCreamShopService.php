@@ -4,6 +4,7 @@ namespace App\Services\Auth;
 
 use App\Exceptions\AccountNotActivatedException;
 use App\Models\IceCreamShop;
+use App\Models\IceCreamShopProfile;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Hashing\Hasher;
 
@@ -18,10 +19,10 @@ class IceCreamShopService implements IceCreamShopServiceInterface
         $this->hashes = $hashes;
     }
 
-    public function register(array $credentials): void
+    public function register(array $data): int
     {
-        $credentials["password"] = $this->hashes->make($credentials["password"]);
-        $this->shop->create($credentials);
+        $data["password"] = $this->hashes->make($data["password"]);
+        return $this->shop->create($data)->id;
     }
 
     /**
@@ -42,5 +43,20 @@ class IceCreamShopService implements IceCreamShopServiceInterface
         }
 
         return $shop->createToken($shop->email)->plainTextToken;
+    }
+
+    public function create(array $shop, int $shopId): void
+    {
+        $this->getShop($shopId)->profiles()->create($shop);
+    }
+
+    public function update(array $shop, IceCreamShopProfile $profile): void
+    {
+        $profile->update($shop);
+    }
+
+    private function getShop(int $id): ?IceCreamShop
+    {
+        return $this->shop->query()->where("id", $id)->first();
     }
 }

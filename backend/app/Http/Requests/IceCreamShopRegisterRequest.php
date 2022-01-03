@@ -14,18 +14,26 @@ class IceCreamShopRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => [
+            'credentials.email' => [
                 'required',
                 'string',
-                'unique:ice_cream_shops',
+                'unique:ice_cream_shops,email',
                 'email:rfc'
             ],
-            'password' => [
+            'credentials.password' => [
                 'required',
                 'string',
                 'confirmed',
                 'min:6'
-            ]
+            ],
+            'shop.name' => ['required','string'],
+            'shop.description' => ['string'],
+            'shop.street_name' => ['required','string'],
+            'shop.street_number' => ['required','numeric'],
+            'shop.unit_number' => ['required','numeric'],
+            'shop.postal' => ['required','string'],
+            'shop.latitude' => ['numeric'],
+            'shop.longitude' => ['numeric']
         ];
     }
 }
