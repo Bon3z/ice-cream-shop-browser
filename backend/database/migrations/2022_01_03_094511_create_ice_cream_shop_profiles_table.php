@@ -17,6 +17,7 @@ class CreateIceCreamShopProfilesTable extends Migration
             $table->id();
             $table->foreignId('ice_cream_shop_id');
             $table->string('name')->nullable();
+            $table->string('city')->nullable();
             $table->string('description')->nullable();
             $table->string('street_name')->nullable();
             $table->string('street_number')->nullable();

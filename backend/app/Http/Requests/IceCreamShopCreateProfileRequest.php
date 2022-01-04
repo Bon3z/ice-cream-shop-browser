@@ -15,6 +15,7 @@ class IceCreamShopCreateProfileRequest extends FormRequest
     {
         return [
             'name' => ['required','string'],
+            'city' => ['required', 'string'],
             'description' => ['required','string'],
             'street_name' => ['required','string'],
             'street_number' => ['required','numeric'],

@@ -13,6 +13,7 @@ class IceCreamShopProfile extends Model
     protected $fillable = [
         'ice_cream_shop_id',
         'name',
+        'city',
         'description',
         'street_name',
         'street_number',

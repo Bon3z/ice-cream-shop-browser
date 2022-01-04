@@ -27,6 +27,7 @@ class IceCreamShopRegisterRequest extends FormRequest
                 'min:6'
             ],
             'shop.name' => ['required','string'],
+            'shop.city' => ['required','string'],
             'shop.description' => ['string'],
             'shop.street_name' => ['required','string'],
             'shop.street_number' => ['required','numeric'],

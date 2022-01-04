@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IceCreamShopController;
+use App\Http\Controllers\IceCreamShopProfileController;
 use Illuminate\Routing\Router;
 
 /*
@@ -19,7 +20,12 @@ $router = app(Router::class);
 $router->post('/register', [IceCreamShopController::class, 'register']);
 $router->post('/login', [IceCreamShopController::class, 'login']);
 
+$router->get('/shops/city/{city}', [IceCreamShopProfileController::class, 'indexByCity']);
+$router->get('/shops', [IceCreamShopProfileController::class, 'index']);
+$router->get('/shops/{id}', [IceCreamShopProfileController::class, 'indexByShopId']);
+$router->get('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'show']);
+
 $router->middleware('auth:sanctum')->group(function (Router $router): void {
-    $router->post('/shop', [IceCreamShopController::class, 'create']);
-    $router->put('/shop/{profile}', [IceCreamShopController::class, 'update']);
+    $router->post('/shops', [IceCreamShopProfileController::class, 'create']);
+    $router->put('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'update']);
 });

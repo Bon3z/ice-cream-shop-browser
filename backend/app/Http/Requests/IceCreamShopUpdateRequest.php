@@ -15,6 +15,7 @@ class IceCreamShopUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required','string'],
+            'city' => ['required', 'string'],
             'description' => ['string'],
             'street_name' => ['required','string'],
             'street_number' => ['required','numeric'],
