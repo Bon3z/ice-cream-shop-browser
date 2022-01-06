@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PhotoRequest;
-use App\Http\Resources\PhotoCollection;
+use App\Http\Resources\Photo\PhotoCollection;
 use App\Models\IceCreamShopProfile;
 use App\Models\IceCreamShopProfilePhoto;
 use App\Services\Photo\Profile\IceCreamShopProfilePhotoServiceInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class IceCreamShopProfilePhotoController extends Controller

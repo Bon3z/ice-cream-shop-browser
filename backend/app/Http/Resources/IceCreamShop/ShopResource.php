@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\IceCreamShop;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PhotoResource extends JsonResource
+class ShopResource extends JsonResource
 {
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'url' => asset($this->path),
+            'email' => $this->email,
             'name' => $this->name
         ];
     }

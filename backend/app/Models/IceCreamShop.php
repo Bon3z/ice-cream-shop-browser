@@ -12,6 +12,7 @@ class IceCreamShop extends Model
     use HasApiTokens, HasFactory;
 
     protected $fillable = [
+        'name',
         'email',
         'password',
         'password_confirmation',

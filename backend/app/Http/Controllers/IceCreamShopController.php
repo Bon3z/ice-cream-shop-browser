@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\IceCreamShopCreateProfileRequest;
 use App\Http\Requests\IceCreamShopLoginRequest;
 use App\Http\Requests\IceCreamShopRegisterRequest;
-use App\Http\Requests\IceCreamShopUpdateRequest;
-use App\Models\IceCreamShop;
-use App\Models\IceCreamShopProfile;
 use App\Services\Auth\IceCreamShopServiceInterface;
 use App\Services\Profile\IceCreamShopProfileServiceInterface;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

@@ -31,7 +31,7 @@ class IceCreamShopProfileService implements IceCreamShopProfileServiceInterface
 
     public function getAll(int $perPage): LengthAwarePaginator
     {
-        return $this->profile->paginate($perPage);
+        return $this->shop->paginate($perPage);
     }
 
     public function indexByCity(string $city, int $perPage): LengthAwarePaginator

@@ -26,6 +26,7 @@ class IceCreamShopRegisterRequest extends FormRequest
                 'confirmed',
                 'min:6'
             ],
+            'credentials.name' => ['required','string'],
             'shop.name' => ['required','string'],
             'shop.city' => ['required','string'],
             'shop.description' => ['string'],

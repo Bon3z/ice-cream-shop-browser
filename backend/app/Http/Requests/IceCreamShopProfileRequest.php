@@ -6,25 +6,18 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class IceCreamShopProfileRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'name' => ['required','string'],
+            'city' => ['required', 'string'],
+            'description' => ['string'],
+            'street_name' => ['required','string'],
+            'street_number' => ['required','numeric'],
+            'unit_number' => ['required','numeric'],
+            'postal' => ['required','string'],
+            'latitude' => ['numeric'],
+            'longitude' => ['numeric']
         ];
     }
 }

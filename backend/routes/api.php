@@ -22,20 +22,25 @@ $router = app(Router::class);
 $router->post('/register', [IceCreamShopController::class, 'register']);
 $router->post('/login', [IceCreamShopController::class, 'login']);
 
-$router->get('/shops/city/{city}', [IceCreamShopProfileController::class, 'indexByCity']);
+// Ice Cream Shops
 $router->get('/shops', [IceCreamShopProfileController::class, 'index']);
+
+// Ice Cream Profiles
 $router->get('/shops/{id}', [IceCreamShopProfileController::class, 'indexByShopId']);
+$router->get('/shops/city/{city}', [IceCreamShopProfileController::class, 'indexByCity']);
 $router->get('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'show']);
+
+// Photos
+$router->get('/shops/photos/{shop}', [IceCreamShopPhotoController::class, 'show']);
+$router->get('/shops/profile/photos/{profile}', [IceCreamShopProfilePhotoController::class, 'show']);
 
 $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->post('/shops', [IceCreamShopProfileController::class, 'create']);
     $router->put('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'update']);
 
     $router->post('/shops/photos', [IceCreamShopPhotoController::class, 'create']);
-    $router->get('/shops/photos/{shop}', [IceCreamShopPhotoController::class, 'show']);
     $router->delete('/shops/photos/{photo}', [IceCreamShopPhotoController::class, 'delete']);
 
     $router->post('/shops/profile/photos', [IceCreamShopProfilePhotoController::class, 'create']);
-    $router->get('/shops/profile/photos/{profile}', [IceCreamShopProfilePhotoController::class, 'show']);
     $router->delete('/shops/profile/photos/{photo}', [IceCreamShopProfilePhotoController::class, 'delete']);
 });
