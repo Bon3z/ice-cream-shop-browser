@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class IceCreamShopProfile extends Model
 {
@@ -26,5 +27,10 @@ class IceCreamShopProfile extends Model
     public function iceCreamShop(): BelongsTo
     {
         return $this->belongsTo(IceCreamShop::class);
+    }
+
+    public function photos(): HasMany
+    {
+        return $this->hasMany(IceCreamShopProfilePhoto::class);
     }
 }

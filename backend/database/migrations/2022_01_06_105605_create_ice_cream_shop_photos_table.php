@@ -29,6 +29,6 @@ class CreateIceCreamShopPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('ice_cream_shop_photos');
     }
 }

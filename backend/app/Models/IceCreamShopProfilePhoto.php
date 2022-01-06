@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class IceCreamShopProfilePhoto extends Model
 {
@@ -14,4 +15,9 @@ class IceCreamShopProfilePhoto extends Model
         'path',
         'name'
     ];
+
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(IceCreamShopProfile::class);
+    }
 }

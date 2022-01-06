@@ -28,7 +28,7 @@ class IceCreamShopPhotoController extends Controller
 
     public function show(Request $request): JsonResponse
     {
-        $photos = $this->service->getShopPhotos($request->user());
+        $photos = $this->service->getPhotos($request->user());
 
         return response()->json(new PhotoCollection($photos), Response::HTTP_OK);
     }

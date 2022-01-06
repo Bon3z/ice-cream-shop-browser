@@ -14,7 +14,7 @@ class CreateIceCreamShopProfilePhotosTable extends Migration
     public function up()
     {
         Schema::create('ice_cream_shop_profile_photos', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->id();
             $table->foreignId('ice_cream_shop_profile_id');
             $table->string('path');
             $table->string('name');

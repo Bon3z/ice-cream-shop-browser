@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\Auth\IceCreamShopService;
 use App\Services\Auth\IceCreamShopServiceInterface;
+use App\Services\Profile\IceCreamShopProfileService;
+use App\Services\Profile\IceCreamShopProfileServiceInterface;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(IceCreamShopServiceInterface::class, IceCreamShopService::class);
+        $this->app->bind(IceCreamShopProfileServiceInterface::class, IceCreamShopProfileService::class);
     }
 
     /**
