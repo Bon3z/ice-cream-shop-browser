@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IceCreamShopController;
+use App\Http\Controllers\IceCreamShopPhotoController;
 use App\Http\Controllers\IceCreamShopProfileController;
 use Illuminate\Routing\Router;
 
@@ -28,4 +29,8 @@ $router->get('/shops/profile/{profile}', [IceCreamShopProfileController::class, 
 $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->post('/shops', [IceCreamShopProfileController::class, 'create']);
     $router->put('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'update']);
+
+    $router->post('/shops/photos', [IceCreamShopPhotoController::class, 'create']);
+    $router->get('/shops/photos/{shop}', [IceCreamShopPhotoController::class, 'show']);
+    $router->delete('/shops/photos/{photo}', [IceCreamShopPhotoController::class, 'delete']);
 });
