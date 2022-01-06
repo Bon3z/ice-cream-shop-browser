@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Menu\MenuService;
+use App\Services\Menu\MenuServiceInterface;
 use App\Services\Photo\Profile\IceCreamShopProfilePhotoService;
 use App\Services\Photo\Profile\IceCreamShopProfilePhotoServiceInterface;
 use App\Services\Photo\Shop\IceCreamShopPhotoService;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(IceCreamShopProfilePhotoServiceInterface::class, IceCreamShopProfilePhotoService::class);
         $this->app->bind(IceCreamShopPhotoServiceInterface::class, IceCreamShopPhotoService::class);
+        $this->app->bind(MenuServiceInterface::class, MenuService::class);
     }
 
     /**

@@ -4,6 +4,7 @@ use App\Http\Controllers\IceCreamShopController;
 use App\Http\Controllers\IceCreamShopPhotoController;
 use App\Http\Controllers\IceCreamShopProfileController;
 use App\Http\Controllers\IceCreamShopProfilePhotoController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Routing\Router;
 
 /*
@@ -43,4 +44,8 @@ $router->middleware('auth:sanctum')->group(function (Router $router): void {
 
     $router->post('/shops/profile/photos', [IceCreamShopProfilePhotoController::class, 'create']);
     $router->delete('/shops/profile/photos/{photo}', [IceCreamShopProfilePhotoController::class, 'delete']);
+
+    $router->post('/shops/profile/{profile}', [MenuController::class, 'create']);
+
+    $router->post('/shops/profile/{profile}', [MenuController::class, 'create']);
 });
