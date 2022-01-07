@@ -46,7 +46,7 @@ class IceCreamShopController extends Controller
     public function delete(IceCreamShop $shop): JsonResponse
     {
         $this->shopService->delete($shop);
-        
+
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

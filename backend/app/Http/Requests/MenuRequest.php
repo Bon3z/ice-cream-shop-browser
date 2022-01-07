@@ -15,6 +15,7 @@ class MenuRequest extends FormRequest
                     'string'
                 ],
                 '*.ingredient.serving_type' => 'nullable',
+                '*.ingredient.price' => 'nullable',
                 '*.allergen.name' => 'nullable',
                 '*.allergen.description' => 'nullable'
             ]

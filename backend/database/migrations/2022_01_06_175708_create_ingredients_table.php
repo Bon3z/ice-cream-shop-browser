@@ -17,6 +17,7 @@ class CreateIngredientsTable extends Migration
                 ->onDelete('cascade');
             $table->string('name');
             $table->string('serving_type');
+            $table->string('price');
             $table->timestamps();
         });
     }
