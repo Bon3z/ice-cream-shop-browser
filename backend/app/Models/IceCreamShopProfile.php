@@ -36,7 +36,12 @@ class IceCreamShopProfile extends Model
         return $this->hasMany(IceCreamShopProfilePhoto::class);
     }
 
-    public function menu(): HasManyThrough
+    public function menu(): HasOne
+    {
+        return $this->hasOne(Menu::class);
+    }
+
+    public function menuIngredients(): HasManyThrough
     {
         return $this->hasManyThrough(Ingredient::class, Menu::class);
     }

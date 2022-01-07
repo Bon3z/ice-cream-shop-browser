@@ -21,6 +21,11 @@ class Menu extends Model
         return $this->belongsTo(IceCreamShopProfile::class);
     }
 
+    public function ingredient(): HasMany
+    {
+        return $this->hasMany(Ingredient::class);
+    }
+
     public function ingredients(): HasManyThrough
     {
         return $this->hasManyThrough(Allergen::class, Ingredient::class);

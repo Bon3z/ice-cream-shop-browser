@@ -11,12 +11,12 @@ class MenuService implements MenuServiceInterface
     {
         $menu = $profile->menu()->create();
         foreach ($data as $key => $ingredient) {
-            $menu->ingredients()->create($ingredient);
+            $menu->ingredient()->create($ingredient);
         }
     }
 
     public function getMenu(IceCreamShopProfile $profile): Collection
     {
-        return $profile->menu()->get();
+        return $profile->menuIngredients()->get();
     }
 }
