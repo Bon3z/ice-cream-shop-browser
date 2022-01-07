@@ -3,6 +3,7 @@
 namespace App\Services\Menu;
 
 use App\Models\IceCreamShopProfile;
+use Illuminate\Database\Eloquent\Collection;
 
 class MenuService implements MenuServiceInterface
 {
@@ -12,5 +13,10 @@ class MenuService implements MenuServiceInterface
         foreach ($data as $key => $ingredient) {
             $menu->ingredients()->create($ingredient);
         }
+    }
+
+    public function getMenu(IceCreamShopProfile $profile): Collection
+    {
+        return $profile->menu()->get();
     }
 }

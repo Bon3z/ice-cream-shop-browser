@@ -35,6 +35,9 @@ $router->get('/shops/profile/{profile}', [IceCreamShopProfileController::class, 
 $router->get('/shops/photos/{shop}', [IceCreamShopPhotoController::class, 'show']);
 $router->get('/shops/profile/photos/{profile}', [IceCreamShopProfilePhotoController::class, 'show']);
 
+// Menus
+$router->get('/shops/profile/{profile}/menu', [MenuController::class, 'index']);
+
 $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->post('/shops', [IceCreamShopProfileController::class, 'create']);
     $router->put('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'update']);
@@ -45,7 +48,5 @@ $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->post('/shops/profile/photos', [IceCreamShopProfilePhotoController::class, 'create']);
     $router->delete('/shops/profile/photos/{photo}', [IceCreamShopProfilePhotoController::class, 'delete']);
 
-    $router->post('/shops/profile/{profile}', [MenuController::class, 'create']);
-
-    $router->post('/shops/profile/{profile}', [MenuController::class, 'create']);
+    $router->post('/shops/profile/{profile}/menu', [MenuController::class, 'create']);
 });
