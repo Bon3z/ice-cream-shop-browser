@@ -10,8 +10,13 @@ class MenuService implements MenuServiceInterface
     public function create(IceCreamShopProfile $profile, array $data): void
     {
         $menu = $profile->menu()->create();
-        foreach ($data as $key => $ingredient) {
-            $menu->ingredient()->create($ingredient);
+
+        foreach ($data as $key => $ingredientData) {
+            $ingredient = $menu->ingredient()->create($ingredientData["ingredient"]);
+
+            if ($ingredientData["allergen"]) {
+                $ingredient->allergens()->create($ingredientData["allergen"]);
+            }
         }
     }
 

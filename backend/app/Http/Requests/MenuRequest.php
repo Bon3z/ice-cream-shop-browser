@@ -8,16 +8,17 @@ class MenuRequest extends FormRequest
 {
     public function rules(): array
     {
-        $rules = [
+        return [
             '*' => [
-                'name' => [
+                '*.ingredient.name' => [
                     'required',
                     'string'
-                ]
+                ],
+                '*.ingredient.serving_type' => 'nullable',
+                '*.allergen.name' => 'nullable',
+                '*.allergen.description' => 'nullable'
             ]
         ];
-
-        return $rules;
     }
 
 }
