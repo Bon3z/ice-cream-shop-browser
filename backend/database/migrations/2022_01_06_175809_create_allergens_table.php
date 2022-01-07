@@ -10,7 +10,11 @@ class CreateAllergensTable extends Migration
     {
         Schema::create('allergens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ingredient_id');
+            $table->unsignedBigInteger('ingredient_id');
+            $table->foreign('ingredient_id')
+                ->references('id')
+                ->on('ingredients')
+                ->onDelete('cascade');
             $table->string('name');
             $table->string('description');
             $table->timestamps();

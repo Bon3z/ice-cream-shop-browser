@@ -10,7 +10,11 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_id');
+            $table->unsignedBigInteger('menu_id');
+            $table->foreign('menu_id')
+                ->references('id')
+                ->on('menus')
+                ->onDelete('cascade');
             $table->string('name');
             $table->string('serving_type');
             $table->timestamps();

@@ -15,7 +15,11 @@ class CreateIceCreamShopProfilePhotosTable extends Migration
     {
         Schema::create('ice_cream_shop_profile_photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ice_cream_shop_profile_id');
+            $table->unsignedBigInteger('ice_cream_shop_profile_id');
+            $table->foreign('ice_cream_shop_profile_id')
+                ->references('id')
+                ->on('ice_cream_shop_profiles')
+                ->onDelete('cascade');
             $table->string('path');
             $table->string('name');
             $table->timestamps();
