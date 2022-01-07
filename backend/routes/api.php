@@ -4,6 +4,7 @@ use App\Http\Controllers\IceCreamShopController;
 use App\Http\Controllers\IceCreamShopPhotoController;
 use App\Http\Controllers\IceCreamShopProfileController;
 use App\Http\Controllers\IceCreamShopProfilePhotoController;
+use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Routing\Router;
 
@@ -39,8 +40,11 @@ $router->get('/shops/profile/photos/{profile}', [IceCreamShopProfilePhotoControl
 $router->get('/shops/profile/{profile}/menu', [MenuController::class, 'index']);
 
 $router->middleware('auth:sanctum')->group(function (Router $router): void {
+    $router->delete('/shops/{shop}', [IceCreamShopController::class, 'delete']);
+
     $router->post('/shops', [IceCreamShopProfileController::class, 'create']);
     $router->put('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'update']);
+    $router->delete('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'delete']);
 
     $router->post('/shops/photos', [IceCreamShopPhotoController::class, 'create']);
     $router->delete('/shops/photos/{photo}', [IceCreamShopPhotoController::class, 'delete']);
@@ -49,4 +53,9 @@ $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->delete('/shops/profile/photos/{photo}', [IceCreamShopProfilePhotoController::class, 'delete']);
 
     $router->post('/shops/profile/{profile}/menu', [MenuController::class, 'create']);
+    $router->delete('/shops/profile/{profile}/menu', [MenuController::class, 'delete']);
+
+    $router->post('/shops/menu/{menu}', [IngredientController::class, 'create']);
+    $router->put('/shops/menu/{ingredient}', [IngredientController::class, 'update']);
+    $router->delete('/shops/menu/{ingredient}', [IngredientController::class, 'delete']);
 });

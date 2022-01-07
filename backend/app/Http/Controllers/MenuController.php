@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MenuRequest;
 use App\Http\Resources\Menu\MenuCollection;
 use App\Models\IceCreamShopProfile;
+use App\Models\Menu;
 use App\Services\Menu\MenuServiceInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MenuController extends Controller
@@ -31,5 +31,12 @@ class MenuController extends Controller
         $ingredients = $this->service->getMenu($profile);
 
         return response()->json(new MenuCollection($ingredients), Response::HTTP_OK);
+    }
+
+    public function delete(Menu $menu): JsonResponse
+    {
+        $this->service->delete($menu);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

@@ -69,4 +69,11 @@ class IceCreamShopProfileController extends Controller
 
         return response()->json(new ProfileResource($profile), Response::HTTP_OK);
     }
+
+    public function delete(IceCreamShopProfile $profile): JsonResponse
+    {
+        $this->service->delete($profile);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
 }

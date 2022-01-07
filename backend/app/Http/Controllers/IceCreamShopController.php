@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IceCreamShopLoginRequest;
 use App\Http\Requests\IceCreamShopRegisterRequest;
+use App\Models\IceCreamShop;
 use App\Services\Auth\IceCreamShopServiceInterface;
 use App\Services\Profile\IceCreamShopProfileServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -40,5 +41,12 @@ class IceCreamShopController extends Controller
             $token,
             Response::HTTP_OK
         );
+    }
+
+    public function delete(IceCreamShop $shop): JsonResponse
+    {
+        $this->shopService->delete($shop);
+        
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

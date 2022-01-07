@@ -43,4 +43,9 @@ class IceCreamShopService implements IceCreamShopServiceInterface
 
         return $shop->createToken($shop->email)->plainTextToken;
     }
+
+    public function delete(IceCreamShop $shop): void
+    {
+        $shop->delete();
+    }
 }

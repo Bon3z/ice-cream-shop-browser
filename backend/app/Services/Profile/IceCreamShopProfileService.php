@@ -58,4 +58,9 @@ class IceCreamShopProfileService implements IceCreamShopProfileServiceInterface
     {
         return $this->shop->query()->where('id', $id);
     }
+
+    public function delete(IceCreamShopProfile $profile): void
+    {
+        $profile->delete();
+    }
 }
