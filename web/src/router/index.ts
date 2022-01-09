@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
-import NewShop from '@/views/NewShop.vue'
+import Register from '@/views/Register.vue'
 import Login from '@/views/Login.vue'
+import NewProfile from '@/views/NewProfile.vue'
 
 Vue.use(VueRouter)
 
@@ -13,14 +14,19 @@ const routes: Array<RouteConfig> = [
     component: HomePage
   },
   {
-    path: '/shop/new',
-    name: 'NewShop',
-    component: NewShop
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/profile/new',
+    name: 'NewProfile',
+    component: NewProfile
   }
 ]
 

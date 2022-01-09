@@ -1,11 +1,12 @@
 import axios from 'axios'
 import store from '@/store'
+import { AuthStoreMethods } from '@/enums/AuthStoreMethods'
 
 axios.defaults.baseURL = 'http://localhost:80/api/'
 
 axios.interceptors.request.use(
   request => {
-    const token = store.getters.getToken
+    const token = store.getters[AuthStoreMethods.getToken]
 
     if (token) {
       request.headers.Authorization = `Bearer ${token}`

@@ -1,13 +1,29 @@
 <template>
   <div id="app">
     <div id="nav">
+      <div v-if="token">
+        <router-link to="/profile/new">Add new profile</router-link>
+      </div>
+      <div v-else>
+        <router-link to="/register">Add new shop</router-link>
+        <router-link to="/login">Login</router-link>
+      </div>
       <router-link to="/">Home</router-link> |
-      <router-link to="/shop/new">Add new shop</router-link>
-      <router-link to="/login">Login</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import { AuthStoreMethods } from '@/enums/AuthStoreMethods'
+import { Getter } from 'vuex-class'
+
+@Component
+export default class App extends Vue {
+  @Getter [AuthStoreMethods.getToken]: string
+}
+</script>
 
 <style>
 #app {
