@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -27,15 +30,26 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     *
-     * @return void
-     */
-    public function register()
+    public function render($request, Throwable $e): JsonResponse
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        if ($e instanceof AuthenticationException)
+        {
+            return $this->renderJsonResponse($e->getMessage(), Response::HTTP_UNAUTHORIZED);
+        }
+
+        if ($e instanceof AccountNotActivatedException)
+        {
+            return $this->renderJsonResponse($e->getMessage(), $e->getCode());
+        }
+
+        return $this->renderJsonResponse($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    private function renderJsonResponse(string $message, int $code, array $data = []): JsonResponse
+    {
+        return response()->json([
+            'message' => $message,
+            "data" => $data
+        ], $code);
     }
 }
