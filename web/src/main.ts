@@ -11,4 +11,4 @@ createApp(App)
     .use(store)
     .use(router)
     .use(axiosConfig)
-    .mount("#app");
+    .mount('#app');
