@@ -42,6 +42,7 @@ $router->get('/shops/profile/{profile}/menu', [MenuController::class, 'index']);
 $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->delete('/shops/{shop}', [IceCreamShopController::class, 'delete']);
 
+    $router->get('/shops/{shop}/profiles', [IceCreamShopProfileController::class, 'authIndex']);
     $router->post('/shops', [IceCreamShopProfileController::class, 'create']);
     $router->put('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'update']);
     $router->delete('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'delete']);

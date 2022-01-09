@@ -6,6 +6,7 @@ use App\Models\IceCreamShop;
 use App\Models\IceCreamShopProfile;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class IceCreamShopProfileService implements IceCreamShopProfileServiceInterface
 {
@@ -32,6 +33,11 @@ class IceCreamShopProfileService implements IceCreamShopProfileServiceInterface
     public function getAll(int $perPage): LengthAwarePaginator
     {
         return $this->shop->paginate($perPage);
+    }
+
+    public function authIndex(IceCreamShop $shop): Collection
+    {
+        return $shop->profiles()->get();
     }
 
     public function indexByCity(string $city, int $perPage): LengthAwarePaginator
