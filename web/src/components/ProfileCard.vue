@@ -13,7 +13,7 @@
           <el-button class="button"
                      type="warning"
                      icon="el-icon-edit"
-                     @click="$router.push(`profile/${id}`)"
+                     @click="$router.push(`profile/${id}/edit`)"
                      circle
           />
         </el-col>
