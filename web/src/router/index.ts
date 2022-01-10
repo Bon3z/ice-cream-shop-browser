@@ -4,6 +4,7 @@ import HomePage from '@/views/HomePage.vue'
 import Register from '@/views/Register.vue'
 import Login from '@/views/Login.vue'
 import NewProfile from '@/views/NewProfile.vue'
+import UserProfiles from '@/views/UserProfiles.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes: Array<RouteConfig> = [
     path: '/profile/new',
     name: 'NewProfile',
     component: NewProfile
+  },
+  {
+    path: '/shop/profiles',
+    name: 'UserProfiles',
+    component: UserProfiles
   }
 ]
 

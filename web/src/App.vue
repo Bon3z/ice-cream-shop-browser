@@ -3,6 +3,7 @@
     <div id="nav">
       <div v-if="token">
         <router-link to="/profile/new">Add new profile</router-link>
+        <router-link to="/shop/profiles">Edit</router-link>
       </div>
       <div v-else>
         <router-link to="/register">Add new shop</router-link>
