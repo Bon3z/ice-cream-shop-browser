@@ -6,14 +6,14 @@
         <el-col :span="12">
           <el-button class="button"
                      type="success"
-                     @click="$router.push(`profile/${id}`)"
+                     @click="$router.push(`/shop/profile/${id}`)"
                      icon="el-icon-right"
                      circle
           />
           <el-button class="button"
                      type="warning"
                      icon="el-icon-edit"
-                     @click="$router.push(`profile/${id}/edit`)"
+                     @click="$router.push(`/shop/profile/${id}/edit`)"
                      circle
           />
         </el-col>
@@ -44,6 +44,12 @@
             </li>
           </ul>
           <el-button slot="reference" style="font-size: 20px">Menu</el-button>
+          <el-button slot="reference"
+                      type="warning"
+                     icon="el-icon-edit"
+                     @click="$router.push(`/shop/profile/${id}/menu/edit`)"
+                     circle
+          />
         </el-popover>
       </el-row>
     </el-card>
@@ -73,7 +79,6 @@ export default class ProfileCard extends Vue {
 
   async created (): Promise<void> {
     axios.get(`shops/profile/${this.id}/menu`).then((response) => {
-      console.log(response)
       this.menu = response.data.menu
     })
   }

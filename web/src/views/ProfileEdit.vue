@@ -16,14 +16,14 @@
       </div>
     </el-col>
     <el-col>
-      <div v-for="(photo, index) in photos" :key="index" class="container" @click="deleteImage(photo.id)">
+      <div v-for="(photo, index) in photos" :key="index" class="container">
         <el-image
           :src="photo.url"
           fit="fit"
           :alt="photo.name"
           class="image"
         />
-        <el-button type="danger" icon="el-icon-error" class="delete"></el-button>
+        <el-button type="danger" icon="el-icon-error" class="delete" @click="deleteImage(photo.id)"></el-button>
       </div>
     </el-col>
   </el-row>

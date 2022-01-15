@@ -6,6 +6,7 @@ import Login from '@/views/Login.vue'
 import NewProfile from '@/views/NewProfile.vue'
 import UserProfiles from '@/views/UserProfiles.vue'
 import ProfileEdit from '@/views/ProfileEdit.vue'
+import MenuEdit from '@/views/MenuEdit.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes: Array<RouteConfig> = [
     path: '/shop/profile/:id/edit',
     name: 'ProfileEdit',
     component: ProfileEdit
+  },
+  {
+    path: '/shop/profile/:id/menu/edit',
+    name: 'MenuEdit',
+    component: MenuEdit
   }
 ]
 
