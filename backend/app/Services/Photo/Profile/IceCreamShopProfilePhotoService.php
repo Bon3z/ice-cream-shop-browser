@@ -8,16 +8,16 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class IceCreamShopProfilePhotoService extends PhotoService implements IceCreamShopProfilePhotoServiceInterface
 {
-    public function upload(UploadedFile $photo, int $shopId): void
+    public function upload(UploadedFile $photo, int $profileId): void
     {
         $path = $this->store($photo);
-        $this->createIceCreamShopProfilePhoto($path, $shopId);
+        $this->createIceCreamShopProfilePhoto($path, $profileId);
     }
 
-    private function createIceCreamShopProfilePhoto(string $path, int $shopId): void
+    private function createIceCreamShopProfilePhoto(string $path, int $profileId): void
     {
         $photo = new IceCreamShopProfilePhoto([
-            "ice_cream_shop_profile_id" => $shopId,
+            "ice_cream_shop_profile_id" => $profileId,
             "name" => basename($path),
             "path" => $path,
         ]);

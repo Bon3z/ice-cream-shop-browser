@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllergenController;
 use App\Http\Controllers\IceCreamShopController;
 use App\Http\Controllers\IceCreamShopPhotoController;
 use App\Http\Controllers\IceCreamShopProfileController;
@@ -42,6 +43,7 @@ $router->get('/shops/profile/{profile}/menu', [MenuController::class, 'index']);
 $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->delete('/shops/{shop}', [IceCreamShopController::class, 'delete']);
 
+    $router->get('/shops/{shop}/profiles', [IceCreamShopProfileController::class, 'authIndex']);
     $router->post('/shops', [IceCreamShopProfileController::class, 'create']);
     $router->put('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'update']);
     $router->delete('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'delete']);
@@ -49,7 +51,7 @@ $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->post('/shops/photos', [IceCreamShopPhotoController::class, 'create']);
     $router->delete('/shops/photos/{photo}', [IceCreamShopPhotoController::class, 'delete']);
 
-    $router->post('/shops/profile/photos', [IceCreamShopProfilePhotoController::class, 'create']);
+    $router->post('/shops/profile/photos/{profile}', [IceCreamShopProfilePhotoController::class, 'create']);
     $router->delete('/shops/profile/photos/{photo}', [IceCreamShopProfilePhotoController::class, 'delete']);
 
     $router->post('/shops/profile/{profile}/menu', [MenuController::class, 'create']);
@@ -58,4 +60,8 @@ $router->middleware('auth:sanctum')->group(function (Router $router): void {
     $router->post('/shops/menu/{menu}', [IngredientController::class, 'create']);
     $router->put('/shops/menu/{ingredient}', [IngredientController::class, 'update']);
     $router->delete('/shops/menu/{ingredient}', [IngredientController::class, 'delete']);
+
+    $router->post('/shops/ingredient/{ingredient}', [AllergenController::class, 'create']);
+    $router->put('/shops/ingredient/allergen/{allergen}', [AllergenController::class, 'update']);
+    $router->delete('/shops/ingredient/allergen/{allergen}', [AllergenController::class, 'delete']);
 });

@@ -29,6 +29,13 @@ class IceCreamShopProfileController extends Controller
         return response()->json(new ShopCollection($shops), Response::HTTP_OK);
     }
 
+    public function authIndex(Request $request): JsonResponse
+    {
+        $profiles = $this->service->authIndex($request->user());
+
+        return response()->json(new ProfileCollection($profiles), Response::HTTP_OK);
+    }
+
     public function create(IceCreamShopCreateProfileRequest $request): JsonResponse
     {
         $shopId = $this->service->create($request->validated(), $request->user()->id);

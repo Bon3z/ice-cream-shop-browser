@@ -9,14 +9,7 @@ class IngredientService implements IngredientServiceInterface
 {
     public function create(Menu $menu, array $data): void
     {
-        foreach ($data as $key => $ingredientData) {
-            $ingredient = $menu->ingredient()->create($ingredientData["ingredient"]);
-            dump(isset($ingredientData["allergen"]));
-
-            if (isset($ingredientData["allergen"])) {
-                $ingredient->allergens()->create($ingredientData["allergen"]);
-            }
-        }
+        $menu->ingredient()->create($data["ingredient"]);
     }
 
     public function update(Ingredient $ingredient, array $data): void

@@ -19,7 +19,7 @@ class IngredientController extends Controller
         $this->service = $service;
     }
 
-    public function create(Menu $menu, MenuRequest $request): JsonResponse
+    public function create(Menu $menu, IngredientRequest $request): JsonResponse
     {
         $this->service->create($menu, $request->validated());
 
