@@ -5,7 +5,7 @@
         <div v-if="editedIngredient.id === ingredient.id">
           <el-input v-model="editedIngredient.name" />
           <el-input v-model="editedIngredient.price" />
-          <el-input v-model="editedIngredient.servingType" />
+          <el-input v-model="editedIngredient.serving_type" />
           <el-button icon="el-icon-edit" type="success" @click="updateIngredient(ingredient)" circle></el-button>
           <el-button icon="el-icon-delete" type="danger" @click="deleteIngredient(ingredient.id)" circle></el-button>
         </div>
@@ -34,12 +34,23 @@
             </div>
           </el-col>
         </div>
-        <div v-if="pendingNewAllergen">
+        <div v-if="pendingNewAllergenId === ingredient.id">
           <el-input v-model="editedAllergen.name" />
           <el-input v-model="editedAllergen.description" />
           <el-button icon="el-icon-check" type="success" @click="createAllergen(ingredient.id)" circle></el-button>
         </div>
-        <el-button type="success" icon="el-icon-plus" @click="pendingNewAllergen = true" circle />
+        <el-button type="success" @click="pendingNewAllergenId = ingredient.id" round>Add allergen</el-button>
+      </div>
+    </el-col>
+    <el-col :span="12" :offset="6">
+      <div>
+        <div v-if="pendingNewIngredient">
+          <el-input v-model="editedIngredient.name" placeholder="Name" />
+          <el-input v-model="editedIngredient.price" placeholder="Price per unit" />
+          <el-input v-model="editedIngredient.serving_type" placeholder="Serving type" />
+          <el-button icon="el-icon-check" type="success" @click="createIngredient" circle></el-button>
+        </div>
+        <el-button type="success" @click="pendingNewIngredient = true" round>Add ingredient</el-button>
       </div>
     </el-col>
   </div>
@@ -48,15 +59,16 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import axios from 'axios'
-import { Menu } from '@/models/Menu'
 import { Allergen } from '@/models/Allergen'
 import { Ingredient } from '@/models/Ingredient'
 
 @Component
 export default class MenuEdit extends Vue {
   private profileId!: string
-  private menu: Array<Menu> = []
-  private pendingNewAllergen = false
+  private menuId!: number
+  private menu: Array<Ingredient> = []
+  private pendingNewAllergenId = 0
+  private pendingNewIngredient = false
   private editedAllergen: Allergen = {
     id: 0,
     name: '',
@@ -67,7 +79,7 @@ export default class MenuEdit extends Vue {
     id: 0,
     name: '',
     price: 0,
-    servingType: ''
+    serving_type: ''
   }
 
   async created (): Promise<void> {
@@ -79,6 +91,7 @@ export default class MenuEdit extends Vue {
     await axios.get(`shops/profile/${this.profileId}/menu`).then((response) => {
       console.log(response)
       this.menu = response.data.menu
+      this.menuId = response.data.id
     })
     console.log(this.menu)
   }
@@ -93,7 +106,7 @@ export default class MenuEdit extends Vue {
     this.editedIngredient.id = ingredient.id
     this.editedIngredient.name = ingredient.name
     this.editedIngredient.price = ingredient.price
-    this.editedIngredient.servingType = ingredient.servingType
+    this.editedIngredient.serving_type = ingredient.serving_type
   }
 
   private clearAllergenEditForm (): void {
@@ -106,14 +119,12 @@ export default class MenuEdit extends Vue {
     this.editedIngredient.id = 0
     this.editedIngredient.name = ''
     this.editedIngredient.price = 0
-    this.editedIngredient.servingType = ''
+    this.editedIngredient.serving_type = ''
   }
 
   private async updateIngredient (ingredient: Ingredient): Promise<void> {
-    console.log(this.editedIngredient)
     const al = this.menu.filter(ing => ing.id === ingredient.id)
     const form = { ingredient: this.editedIngredient, allergens: al[0].allergens[0] }
-    console.log(form)
     await axios.put(`shops/menu/${ingredient.id}`, form).then(() => {
       this.getProfileMenu()
       this.clearAllergenEditForm()
@@ -143,7 +154,19 @@ export default class MenuEdit extends Vue {
   }
 
   private async deleteAllergen (id: number): Promise<void> {
-    console.log(id)
+    await axios.delete(`shops/ingredient/allergen/${id}`).then(() => {
+      this.getProfileMenu()
+    })
+  }
+
+  private async createIngredient (): Promise<void> {
+    const form = { ingredient: this.editedIngredient }
+    console.log(form)
+    await axios.post(`shops/menu/${this.menuId}`, form).then((r) => {
+      console.log(r)
+      this.clearIngredientEditForm()
+      this.getProfileMenu()
+    })
   }
 }
 </script>
