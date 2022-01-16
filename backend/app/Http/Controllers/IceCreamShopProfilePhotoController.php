@@ -19,9 +19,9 @@ class IceCreamShopProfilePhotoController extends Controller
         $this->service = $service;
     }
 
-    public function create(PhotoRequest $request): JsonResponse
+    public function create(PhotoRequest $request, IceCreamShopProfile $profile): JsonResponse
     {
-        $this->service->upload($request->file('image'), $request->user()->id);
+        $this->service->upload($request->file('image'), $profile->id);
 
         return response()->json(null, Response::HTTP_CREATED);
     }

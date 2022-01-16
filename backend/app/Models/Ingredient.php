@@ -14,7 +14,8 @@ class Ingredient extends Model
     protected $fillable = [
         'menu_id',
         'name',
-        'serving_type'
+        'serving_type',
+        'price'
     ];
 
     public function menu(): BelongsTo

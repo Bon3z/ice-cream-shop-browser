@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Allergen\AllergenService;
+use App\Services\Allergen\AllergenServiceInterface;
 use App\Services\Ingredient\IngredientService;
 use App\Services\Ingredient\IngredientServiceInterface;
 use App\Services\Menu\MenuService;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IceCreamShopPhotoServiceInterface::class, IceCreamShopPhotoService::class);
         $this->app->bind(MenuServiceInterface::class, MenuService::class);
         $this->app->bind(IngredientServiceInterface::class, IngredientService::class);
+        $this->app->bind(AllergenServiceInterface::class, AllergenService::class);
     }
 
     /**
