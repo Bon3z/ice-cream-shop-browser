@@ -1,14 +1,18 @@
-import { createApp } from "vue";
-import App from './App.vue';
-import ElementPlus from 'element-plus';
-import 'element-plus/dist/index.css';
-import router from './router';
-import store from './store';
-import axiosConfig from '@/axiosConfig';
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+import axiosConfig from './axiosConfig'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
-createApp(App)
-    .use(ElementPlus)
-    .use(store)
-    .use(router)
-    .use(axiosConfig)
-    .mount('#app');
+Vue.config.productionTip = false
+
+Vue.use(ElementUI)
+Vue.use(axiosConfig)
+
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')

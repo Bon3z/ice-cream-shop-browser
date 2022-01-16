@@ -1,26 +1,57 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue'
+import VueRouter, { RouteConfig } from 'vue-router'
+import HomePage from '@/views/HomePage.vue'
+import Register from '@/views/Register.vue'
+import Login from '@/views/Login.vue'
+import NewProfile from '@/views/NewProfile.vue'
+import UserProfiles from '@/views/UserProfiles.vue'
+import ProfileEdit from '@/views/ProfileEdit.vue'
+import MenuEdit from '@/views/MenuEdit.vue'
 
-const routes: Array<RouteRecordRaw> = [
+Vue.use(VueRouter)
+
+const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "Home",
-    component: Home,
+    path: '/',
+    name: 'HomePage',
+    component: HomePage
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
-];
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/profile/new',
+    name: 'NewProfile',
+    component: NewProfile
+  },
+  {
+    path: '/shop/profiles',
+    name: 'UserProfiles',
+    component: UserProfiles
+  },
+  {
+    path: '/shop/profile/:id/edit',
+    name: 'ProfileEdit',
+    component: ProfileEdit
+  },
+  {
+    path: '/shop/profile/:id/menu/edit',
+    name: 'MenuEdit',
+    component: MenuEdit
+  }
+]
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
 
-export default router;
+export default router
