@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :span="6" :offset="6">
+    <el-col :span="12" :offset="6">
       <el-input v-model="shop.name" placeholder="name"></el-input>
       <el-input v-model="shop.city" placeholder="city"></el-input>
       <el-input v-model="shop.description" placeholder="description"></el-input>

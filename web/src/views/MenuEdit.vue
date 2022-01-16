@@ -6,15 +6,15 @@
           <el-input v-model="editedIngredient.name" />
           <el-input v-model="editedIngredient.price" />
           <el-input v-model="editedIngredient.serving_type" />
-          <el-button icon="el-icon-edit" type="success" @click="updateIngredient(ingredient)" circle></el-button>
-          <el-button icon="el-icon-delete" type="danger" @click="deleteIngredient(ingredient.id)" circle></el-button>
+          <el-button class="button" icon="el-icon-edit" type="success" @click="updateIngredient(ingredient)" circle></el-button>
+          <el-button class="button" icon="el-icon-delete" type="danger" @click="deleteIngredient(ingredient.id)" circle></el-button>
         </div>
         <div v-else>
           <el-col :span="6">{{ ingredient.name }}</el-col>
           <el-col :span="6">{{ ingredient.servingType }}</el-col>
           <el-col :span="6">{{ ingredient.price }}PLN</el-col>
-          <el-button icon="el-icon-edit" type="warning" circle @click="prepareIngredientEditForm(ingredient)"></el-button>
-          <el-button icon="el-icon-delete" type="danger" @click="deleteIngredient(ingredient.id)" circle></el-button>
+          <el-button class="button" icon="el-icon-edit" type="warning" circle @click="prepareIngredientEditForm(ingredient)"></el-button>
+          <el-button class="button" icon="el-icon-delete" type="danger" @click="deleteIngredient(ingredient.id)" circle></el-button>
         </div>
       </el-col>
       <div>
@@ -23,23 +23,23 @@
             <div v-if="editedAllergen.id === allergen.id">
               <el-input v-if="editedAllergen.id" v-model="editedAllergen.name" />
               <el-input v-if="editedAllergen.id" v-model="editedAllergen.description" />
-              <el-button icon="el-icon-check" type="success" @click="updateAllergen(allergen.id)" circle></el-button>
-              <el-button icon="el-icon-delete" type="danger" @click="deleteAllergen(allergen.id)" circle></el-button>
+              <el-button class="button" icon="el-icon-check" type="success" @click="updateAllergen(allergen.id)" circle></el-button>
+              <el-button class="button" icon="el-icon-delete" type="danger" @click="deleteAllergen(allergen.id)" circle></el-button>
             </div>
             <div v-else>
               <el-col :span="9">{{ allergen.name }}</el-col>
               <el-col :span="9">{{ allergen.description }}</el-col>
-              <el-button icon="el-icon-edit" type="warning" @click="prepareAllergenEditForm(allergen)" circle></el-button>
-              <el-button icon="el-icon-delete" type="danger" @click="deleteAllergen(allergen.id)" circle></el-button>
+              <el-button class="button" icon="el-icon-edit" type="warning" @click="prepareAllergenEditForm(allergen)" circle></el-button>
+              <el-button class="button" icon="el-icon-delete" type="danger" @click="deleteAllergen(allergen.id)" circle></el-button>
             </div>
           </el-col>
         </div>
         <div v-if="pendingNewAllergenId === ingredient.id">
           <el-input v-model="editedAllergen.name" />
           <el-input v-model="editedAllergen.description" />
-          <el-button icon="el-icon-check" type="success" @click="createAllergen(ingredient.id)" circle></el-button>
+          <el-button class="button" icon="el-icon-check" type="success" @click="createAllergen(ingredient.id)" circle></el-button>
         </div>
-        <el-button type="success" @click="pendingNewAllergenId = ingredient.id" round>Add allergen</el-button>
+        <el-button class="button" type="success" @click="pendingNewAllergenId = ingredient.id" round>Add allergen</el-button>
       </div>
     </el-col>
     <el-col :span="12" :offset="6">
@@ -48,9 +48,9 @@
           <el-input v-model="editedIngredient.name" placeholder="Name" />
           <el-input v-model="editedIngredient.price" placeholder="Price per unit" />
           <el-input v-model="editedIngredient.serving_type" placeholder="Serving type" />
-          <el-button icon="el-icon-check" type="success" @click="createIngredient" circle></el-button>
+          <el-button class="button" icon="el-icon-check" type="success" @click="createIngredient" circle></el-button>
         </div>
-        <el-button type="success" @click="pendingNewIngredient = true" round>Add ingredient</el-button>
+        <el-button class="button" type="success" @click="pendingNewIngredient = true" round>Add ingredient</el-button>
       </div>
     </el-col>
   </div>
@@ -172,6 +172,10 @@ export default class MenuEdit extends Vue {
 </script>
 
 <style scoped>
+.button {
+  margin-top: 5px;
+}
+
 .ingredient {
   box-shadow: 2px 2px #4c5965;
   font-weight: bold;

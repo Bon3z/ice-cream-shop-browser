@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <el-col id="app">
     <div id="nav">
       <div v-if="token">
         <router-link to="/profile/new">Add new profile</router-link>
@@ -11,8 +11,8 @@
       </div>
       <router-link to="/">Home</router-link> |
     </div>
-    <router-view/>
-  </div>
+    <router-view class="router"/>
+  </el-col>
 </template>
 
 <script lang="ts">
@@ -33,6 +33,10 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+body {
+  margin: 0;
 }
 
 #nav {
