@@ -12,12 +12,10 @@ class MenuService implements MenuServiceInterface
     {
         $menu = $profile->menu()->create();
 
-        foreach ($data as $key => $ingredientData) {
-            $ingredient = $menu->ingredient()->create($ingredientData["ingredient"]);
+        $ingredient = $menu->ingredient()->create($data["ingredient"]);
 
-            if (isset($ingredientData["allergen"])) {
-                $ingredient->allergens()->create($ingredientData["allergen"]);
-            }
+        if (isset($data["allergen"])) {
+            $ingredient->allergens()->create($data["allergen"]);
         }
     }
 

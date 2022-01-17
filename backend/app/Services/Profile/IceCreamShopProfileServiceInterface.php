@@ -13,5 +13,5 @@ interface IceCreamShopProfileServiceInterface
     public function indexByCity(string $city, int $perPage): LengthAwarePaginator;
     public function indexByShopId(int $shopId, int $perPage): LengthAwarePaginator;
     public function show(int $profileId): ?IceCreamShopProfile;
-    public function delete(IceCreamShopProfile $profile): void;
+    public function delete(int $profileId): void;
 }

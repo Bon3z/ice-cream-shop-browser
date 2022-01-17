@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilteredRequest;
 use App\Http\Requests\IceCreamShopCreateProfileRequest;
 use App\Http\Requests\IceCreamShopProfileRequest;
 use App\Http\Resources\IceCreamProfile\ProfileCollection;
 use App\Http\Resources\IceCreamProfile\ProfileResource;
-use App\Http\Resources\IceCreamShop\ShopCollection;
+use App\Http\Resources\Options\OptionsCollection;
 use App\Models\IceCreamShopProfile;
 use App\Services\Profile\IceCreamShopProfileServiceInterface;
 use Illuminate\Http\Request;
@@ -22,16 +23,16 @@ class IceCreamShopProfileController extends Controller
         $this->service = $service;
     }
 
-    public function index(Request $request): JsonResponse
+    public function index(FilteredRequest $request): JsonResponse
     {
-        $shops = $this->service->getAll($request->input('perPage'));
+        $profiles = $this->service->get($request->validated());
 
-        return response()->json(new ShopCollection($shops), Response::HTTP_OK);
+        return response()->json(new ProfileCollection($profiles), Response::HTTP_OK);
     }
 
     public function authIndex(Request $request): JsonResponse
     {
-        $profiles = $this->service->authIndex($request->user());
+        $profiles = $this->service->authIndex($request->user()->id);
 
         return response()->json(new ProfileCollection($profiles), Response::HTTP_OK);
     }
@@ -54,6 +55,13 @@ class IceCreamShopProfileController extends Controller
             'message' => 'Shop has been updated!',
             'shopId' => $shopId
         ],Response::HTTP_CREATED);
+    }
+
+    public function options(): JsonResponse
+    {
+        $cities = $this->service->getOptions();
+
+        return response()->json(new OptionsCollection($cities), Response::HTTP_OK);
     }
 
     public function indexByCity(Request $request): JsonResponse
@@ -79,7 +87,7 @@ class IceCreamShopProfileController extends Controller
 
     public function delete(IceCreamShopProfile $profile): JsonResponse
     {
-        $this->service->delete($profile);
+        $this->service->delete($profile->id);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
