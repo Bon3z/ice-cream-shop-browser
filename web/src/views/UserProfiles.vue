@@ -26,11 +26,12 @@
 import { Vue, Component } from 'vue-property-decorator'
 import axios from 'axios'
 import ProfileCard from '@/components/ProfileCard.vue'
+import { Profile } from '@/models/Profile'
 @Component({
   components: { ProfileCard }
 })
 export default class UserProfiles extends Vue {
-  private shops = [];
+  private shops: Array<Profile> = [];
   async created (): Promise<void> {
     axios.get(`shops/${this.id}/profiles`).then((response) => {
       console.log(response)
