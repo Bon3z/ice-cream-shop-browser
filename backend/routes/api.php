@@ -26,12 +26,14 @@ $router->post('/register', [IceCreamShopController::class, 'register']);
 $router->post('/login', [IceCreamShopController::class, 'login']);
 
 // Ice Cream Shops
-$router->get('/shops', [IceCreamShopProfileController::class, 'index']);
+// $router->get('/shops', [IceCreamShopProfileController::class, 'index']);
 
 // Ice Cream Profiles
+$router->get('/profiles', [IceCreamShopProfileController::class, 'index']);
 $router->get('/shops/{id}', [IceCreamShopProfileController::class, 'indexByShopId']);
 $router->get('/shops/city/{city}', [IceCreamShopProfileController::class, 'indexByCity']);
 $router->get('/shops/profile/{profile}', [IceCreamShopProfileController::class, 'show']);
+$router->get('/options', [IceCreamShopProfileController::class, 'options']);
 
 // Photos
 $router->get('/shops/photos/{shop}', [IceCreamShopPhotoController::class, 'show']);

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,5 +45,19 @@ class IceCreamShopProfile extends Model
     public function menuIngredients(): HasManyThrough
     {
         return $this->hasManyThrough(Ingredient::class, Menu::class);
+    }
+
+    public function scopeByIngredients(Builder $query, string $ingredient): Builder
+    {
+        return $query->whereHas("menu", function (Builder $query) use ($ingredient): void {
+            $query->whereHas("ingredient", function (Builder $query) use ($ingredient): void {
+                $query->where("name", $ingredient);
+            });
+        });
+    }
+
+    public function scopeByCity(Builder $query, string $city): Builder
+    {
+        return $query->where('city', $city);
     }
 }
