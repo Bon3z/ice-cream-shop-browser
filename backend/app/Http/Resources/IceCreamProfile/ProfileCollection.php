@@ -2,14 +2,15 @@
 
 namespace App\Http\Resources\IceCreamProfile;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\BasicPagination\PaginatedCollection;
 
-class ProfileCollection extends ResourceCollection
+class ProfileCollection extends PaginatedCollection
 {
     public function toArray($request): array
     {
         return [
             "profiles" => ProfileResource::collection($this->collection),
+            "pagination" => $this->getPaginationLinks($request),
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Services\Profile;
 
-use App\Http\Resources\IceCreamProfile\ProfileCollection;
 use App\Models\IceCreamShop;
 use App\Models\IceCreamShopProfile;
 use App\Models\Ingredient;
