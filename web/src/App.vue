@@ -1,7 +1,8 @@
 <template>
   <el-col id="app">
     <div id="nav">
-      <div v-if="token">
+      <router-link to="/">Home</router-link>
+      <div v-if="token" class="router">
         <router-link to="/profile/new">Add new profile</router-link>
         <router-link to="/shop/profiles">Edit</router-link>
       </div>
@@ -9,9 +10,8 @@
         <router-link to="/register">Add new shop</router-link>
         <router-link to="/login">Login</router-link>
       </div>
-      <router-link to="/">Home</router-link> |
     </div>
-    <router-view class="router"/>
+    <router-view />
   </el-col>
 </template>
 
@@ -37,6 +37,10 @@ export default class App extends Vue {
 
 body {
   margin: 0;
+}
+
+.router {
+  display: inline-block;
 }
 
 #nav {

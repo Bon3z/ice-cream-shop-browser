@@ -10,7 +10,8 @@
                      icon="el-icon-right"
                      circle
           />
-          <el-button class="button"
+          <el-button v-if="isEditable"
+                     class="button"
                      type="warning"
                      icon="el-icon-edit"
                      @click="$router.push(`/shop/profile/${id}/edit`)"
@@ -44,7 +45,8 @@
             </li>
           </ul>
           <el-button slot="reference" style="font-size: 20px">Menu</el-button>
-          <el-button slot="reference"
+          <el-button v-if="isEditable"
+                      slot="reference"
                       type="warning"
                      icon="el-icon-edit"
                      @click="$router.push(`/shop/profile/${id}/menu/edit`)"
@@ -74,6 +76,7 @@ export default class ProfileCard extends Vue {
   @Prop(String) phone: string | undefined
   @Prop(String) latitude: string | undefined
   @Prop(String) longitude: string | undefined
+  @Prop(Boolean) isEditable: boolean | undefined
 
   private menu: Array<Ingredient> = []
 
