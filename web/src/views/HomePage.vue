@@ -27,6 +27,7 @@
                           :street-name="profile.street_name"
                           :street-number="profile.street_number"
                           :unit-number="profile.unit_number"
+                          :is-editable="false"
                           class="profile-card"
             />
           </div>
