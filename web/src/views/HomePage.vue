@@ -31,6 +31,17 @@
             />
           </div>
         </el-row>
+        <el-row v-if="isDataLoaded">
+          <el-pagination
+            :page-size="paginationInfo.per_page"
+            layout="sizes, prev, pager, next"
+            @current-change='changePage'
+            @size-change="changePerPage"
+            :current-page ="paginationInfo.currentPage"
+            :total="paginationInfo.total"
+            :page-sizes="[9, 18, 36]"
+          ></el-pagination>
+        </el-row>
       </el-col>
     </el-col>
   </div>
@@ -43,6 +54,7 @@ import { Profile } from '@/models/Profile'
 import ProfileCard from '@/components/ProfileCard.vue'
 import City from '@/components/HomePage/City.vue'
 import Ingredient from '@/components/HomePage/Ingredient.vue'
+import { Pagination } from '@/models/Pagination'
 
 @Component({
   components: {
@@ -53,6 +65,14 @@ import Ingredient from '@/components/HomePage/Ingredient.vue'
 })
 export default class HomePage extends Vue {
   private profiles: Array<Profile> = []
+  private paginationInfo: Pagination = {
+    total: 0,
+    current_page: 0,
+    per_page: 0,
+    count: 0,
+    total_pages: 0
+  }
+
   private options = []
   private query = {
     city: '',
@@ -76,7 +96,12 @@ export default class HomePage extends Vue {
       url = `${url}&city=${this.query.city}`
     }
 
+    if (this.paginationInfo.current_page !== 0) {
+      url = `${url}&page=${this.paginationInfo.current_page}`
+    }
+
     await axios.get(url).then((response) => {
+      this.paginationInfo = response.data.pagination
       this.profiles = response.data.profiles
     })
   }
@@ -89,10 +114,24 @@ export default class HomePage extends Vue {
     }
   }
 
+  private async changePage (page: number): Promise<void> {
+    this.paginationInfo.current_page = page
+    await this.getProfiles()
+  }
+
+  private async changePerPage (perPage: number): Promise<void> {
+    this.query.perPage = perPage
+    await this.getProfiles()
+  }
+
   private async getOptions (): Promise<void> {
     await axios.get('/options').then((response) => {
       this.options = response.data.options
     })
+  }
+
+  get isDataLoaded (): boolean {
+    return this.profiles.length > 0
   }
 }
 </script>

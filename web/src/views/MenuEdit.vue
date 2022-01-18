@@ -68,7 +68,6 @@ export default class MenuEdit extends Vue {
   private menuId!: number
   private menu: Array<Ingredient> = []
   private pendingNewAllergenId = 0
-  private pendingNewIngredient = false
   private editedAllergen: Allergen = {
     id: 0,
     name: '',
@@ -106,7 +105,7 @@ export default class MenuEdit extends Vue {
     this.editedIngredient.id = ingredient.id
     this.editedIngredient.name = ingredient.name
     this.editedIngredient.price = ingredient.price
-    this.editedIngredient.serving_type = ingredient.serving_type
+    this.editedIngredient.serving_type = ingredient.servingType
   }
 
   private clearAllergenEditForm (): void {
@@ -134,7 +133,6 @@ export default class MenuEdit extends Vue {
 
   private async createAllergen (ingredientId: number): Promise<void> {
     await axios.post(`shops/ingredient/${ingredientId}`, this.editedAllergen).then(() => {
-      this.pendingNewAllergen = false
       this.clearAllergenEditForm()
       this.getProfileMenu()
     })
@@ -179,13 +177,14 @@ export default class MenuEdit extends Vue {
 .ingredient {
   box-shadow: 2px 2px #4c5965;
   font-weight: bold;
-  font-size: 28px;
+  font-size: 2vw;
   margin: 10px 0 0 10px;
   padding: 20px;
   background-color: #9ea7ac;
   border-radius: 5px 5px 0 0;
   height: 100%;
   width: 100%;
+  overflow-wrap: break-word;
 }
 
 .allergen {
