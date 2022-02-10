@@ -6,7 +6,7 @@ use App\Models\IceCreamShop;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class IceCreamShopFactory extends Factory
+class ShopFactory extends Factory
 {
     protected $model = IceCreamShop::class;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use Database\Factories\IceCreamShopFactory;
+use Database\Factories\ShopFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
@@ -17,7 +17,7 @@ class LoginTest extends TestCase
     {
         $email = 'test@example.com';
 
-        IceCreamShopFactory::new()->create(['email' => $email]);
+        ShopFactory::new()->create(['email' => $email]);
 
         $response = $this->post('/api/login', [
             'email' => $email,

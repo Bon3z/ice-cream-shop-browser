@@ -8,6 +8,6 @@ class IceCreamShopObserver
 {
     public function created(IceCreamShop $shop): void
     {
-        $shop->profile()->create();
+        $shop->profiles()->create();
     }
 }

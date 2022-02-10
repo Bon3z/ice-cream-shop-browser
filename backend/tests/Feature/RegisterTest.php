@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use Database\Factories\IceCreamShopFactory;
+use Database\Factories\ShopFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,7 +55,7 @@ class RegisterTest extends TestCase
     {
         $email = 'test@example.com';
 
-        IceCreamShopFactory::new()->create(['email' => $email]);
+        ShopFactory::new()->create(['email' => $email]);
 
         $response = $this->post('/api/register', $this->data);
 

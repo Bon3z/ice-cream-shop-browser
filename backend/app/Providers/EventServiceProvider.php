@@ -29,5 +29,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        IceCreamShop::observe(IceCreamShopObserver::class);
     }
 }

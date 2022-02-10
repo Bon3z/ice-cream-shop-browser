@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FilteredRequest;
 use App\Http\Requests\IceCreamShopCreateProfileRequest;
 use App\Http\Requests\IceCreamShopProfileRequest;
+use App\Http\Requests\IceCreamShopProfileUpdateRequest;
 use App\Http\Resources\IceCreamProfile\ProfileCollection;
 use App\Http\Resources\IceCreamProfile\ProfileResource;
 use App\Http\Resources\Options\OptionsCollection;
@@ -47,7 +48,7 @@ class IceCreamShopProfileController extends Controller
         ],Response::HTTP_CREATED);
     }
 
-    public function update(IceCreamShopProfileRequest $request, IceCreamShopProfile $profile): JsonResponse
+    public function update(IceCreamShopProfileUpdateRequest $request, IceCreamShopProfile $profile): JsonResponse
     {
         $shopId = $this->service->update($request->validated(), $profile);
 
